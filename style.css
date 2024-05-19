@@ -15,10 +15,10 @@
 .starting-block {
     background-color: blue;
 }
-.log-left, 
+/*.log-left, 
 .log-right {
 background-color: rgb(51, 90, 243);
-}
+}*/
 
 .car-left,
 .car-right {
@@ -27,4 +27,12 @@ background-color: rgb(51, 90, 243);
 
 .frog {
     background-color: green;
+}
+
+.l1, .l2, .l3 {
+    background-color: brown;
+}
+
+.l4, .l5 {
+    background-color: lightblue;
 }
