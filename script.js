@@ -14,6 +14,7 @@ let currentIndex = 76
 const width = 9
 //nastavujeme timer
 let timerId
+let currentTime = 20
 
 
 function moveFrog(e) {
@@ -41,16 +42,19 @@ function moveFrog(e) {
     //3.squares dávam do array
     squares[currentIndex].classList.add('frog')
 }
-document.addEventListener("keyup", moveFrog)
 
 // 5. funkcia, ktorá vyberá logy v dive
 function autoMoveElements() {
+    //13. nastavujeme časomieru
+    currentTime--
+    timeLeftDisplay.textContent = currentTime
     logsLeft.forEach(logLeft => moveLogLeft(logLeft))
     //8. pridávame do funkcie foreach pre right
     logsRight.forEach(logRight => moveLogRight(logRight))
     carsLeft.forEach(carLeft => moveCarLeft(carLeft))
     carsRight.forEach(carRight => moveCarRight(carRight))
     lose()
+    win()
 }
 // 4. funkcia, ktorá nastavuje pohyb tilov do strany
 
@@ -144,7 +148,8 @@ function lose() {
     if (
     squares[currentIndex].classList.contains("c1") ||
     squares[currentIndex].classList.contains("l4") ||
-    squares[currentIndex].classList.contains("l5")
+    squares[currentIndex].classList.contains("l5") ||
+    currentTime <= 0
     ){
         resultDisplay.textContent = "You lose, sucker!"
         clearInterval(timerId)
@@ -153,5 +158,23 @@ function lose() {
     }
 }
 
+function win() {
+    if (squares[currentIndex].classList.contains("ending-block")) {
+        resultDisplay.textContent = "You win, superhero!"
+        clearInterval(timerId)
+        document.removeEventListener("keyup", moveFrog)
+    }
+}
+//14 nastavujeme start/pause button - presúvame sem evenlistener a funkciu timerId
+startPauseButton.addEventListener("click", () => {
+    if (timerId) {
+        clearInterval(timerId)
+        timerId = null
+        document.removeEventListener("keyup", moveFrog)
+    } else {
+        timerId = setInterval(autoMoveElements, 1000)
+        document.addEventListener("keyup", moveFrog)
+    }
+})
+
 //7. nastavujeme interval pohybu
-timerId = setInterval(autoMoveElements, 1000)
