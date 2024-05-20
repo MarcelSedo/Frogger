@@ -4,6 +4,7 @@ const timeLeftDisplay = document.querySelector('#time-left')
 const resultDisplay = document.querySelector('#result')
 const startPauseButton = document.querySelector('#start-pause-button')
 const squares = document.querySelectorAll('.grid div')
+const logLeft = document.querySelectorAll("log-left")
 //2. vždy keď sa pohneme, eventListener to zaregistruje a spustí funkciumoveFrog
 console.log(squares)
 let currentIndex = 76
@@ -34,3 +35,21 @@ function moveFrog(e) {
     squares[currentIndex].classList.add('frog')
 }
 document.addEventListener("keyup", moveFrog)
+
+// 5.
+function autoMoveLogs() {
+    logsLeft.forEach(logLeft => moveLogLeft(logLeft) )
+}
+
+//6. 
+
+// 4. 
+
+function moveLogLeft(logLeft) {
+    switch(true) {
+        case logLeft.classList.contains("l1") :
+            logLeft.classList.remove("l1")
+            logLeft.classList.add("l2")
+
+    }
+}
