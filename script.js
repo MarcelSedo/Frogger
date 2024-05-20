@@ -12,6 +12,10 @@ const carsRight = document.querySelectorAll(".car-right")
 console.log(squares)
 let currentIndex = 76
 const width = 9
+//nastavujeme timer
+let timerId
+
+
 function moveFrog(e) {
 
     squares[currentIndex].classList.remove('frog')
@@ -46,6 +50,7 @@ function autoMoveElements() {
     logsRight.forEach(logRight => moveLogRight(logRight))
     carsLeft.forEach(carLeft => moveCarLeft(carLeft))
     carsRight.forEach(carRight => moveCarRight(carRight))
+    lose()
 }
 // 4. funkcia, ktorá nastavuje pohyb tilov do strany
 
@@ -134,6 +139,19 @@ function moveCarRight(carRight) {
             break
     }
 }
+//11. nastavujeme funkciu pre prehru - zásah auta alebo vody
+function lose() {
+    if (
+    squares[currentIndex].classList.contains("c1") ||
+    squares[currentIndex].classList.contains("l4") ||
+    squares[currentIndex].classList.contains("l5")
+    ){
+        resultDisplay.textContent = "You lose, sucker!"
+        clearInterval(timerId)
+        squares[currentIndex].classList.remove("frog")
+        document.removeEventListener("keyup", moveFrog)
+    }
+}
 
 //7. nastavujeme interval pohybu
-setInterval(autoMoveElements, 1000)
+timerId = setInterval(autoMoveElements, 1000)
