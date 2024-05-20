@@ -20,10 +20,11 @@
 background-color: rgb(51, 90, 243);
 }*/
 
+/*
 .car-left,
 .car-right {
     background-color: rgb(175, 175, 175);
-}
+}*/
 
 .frog {
     background-color: green;
@@ -35,4 +36,11 @@ background-color: rgb(51, 90, 243);
 
 .l4, .l5 {
     background-color: lightblue;
+}
+.c1 {
+    background-color: black;
+
+}
+.c2, .c3 {
+    background-color: lightgrey;
 }
