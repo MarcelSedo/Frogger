@@ -14,6 +14,7 @@ let currentIndex = 76
 const width = 9
 //nastavujeme timer
 let timerId
+let outcomeTimerId 
 let currentTime = 20
 
 
@@ -53,6 +54,10 @@ function autoMoveElements() {
     logsRight.forEach(logRight => moveLogRight(logRight))
     carsLeft.forEach(carLeft => moveCarLeft(carLeft))
     carsRight.forEach(carRight => moveCarRight(carRight))
+}
+
+//15 potrebujeme rýchlejsie chceckovanie vysledkov ako sekundu - vytváram funkciu
+function checkOutComes() {
     lose()
     win()
 }
@@ -153,6 +158,7 @@ function lose() {
     ){
         resultDisplay.textContent = "You lose, sucker!"
         clearInterval(timerId)
+        clearInterval(outcomeTimerId)
         squares[currentIndex].classList.remove("frog")
         document.removeEventListener("keyup", moveFrog)
     }
@@ -169,10 +175,13 @@ function win() {
 startPauseButton.addEventListener("click", () => {
     if (timerId) {
         clearInterval(timerId)
+        clearInterval(outcomeTimerId)
+        outcomeTimerId = null
         timerId = null
         document.removeEventListener("keyup", moveFrog)
     } else {
         timerId = setInterval(autoMoveElements, 1000)
+        outcomeTimerId = setInterval(checkOutComes, 50)
         document.addEventListener("keyup", moveFrog)
     }
 })
