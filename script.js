@@ -4,7 +4,8 @@ const timeLeftDisplay = document.querySelector('#time-left')
 const resultDisplay = document.querySelector('#result')
 const startPauseButton = document.querySelector('#start-pause-button')
 const squares = document.querySelectorAll('.grid div')
-const logLeft = document.querySelectorAll("log-left")
+const logsLeft = document.querySelectorAll(".log-left")
+const logsLeft = document.querySelectorAll(".log-left")git
 //2. vždy keď sa pohneme, eventListener to zaregistruje a spustí funkciumoveFrog
 console.log(squares)
 let currentIndex = 76
@@ -36,20 +37,35 @@ function moveFrog(e) {
 }
 document.addEventListener("keyup", moveFrog)
 
-// 5.
+// 5. funkcia, ktorá vyberá logy v dive
 function autoMoveLogs() {
     logsLeft.forEach(logLeft => moveLogLeft(logLeft) )
 }
 
 //6. 
-
-// 4. 
+autoMoveLogs
+// 4. funkcia, ktorá nastavuje pohyb tilov do strany
 
 function moveLogLeft(logLeft) {
     switch(true) {
         case logLeft.classList.contains("l1") :
             logLeft.classList.remove("l1")
             logLeft.classList.add("l2")
+        case logLeft.classList.contains("l2") :
+            logLeft.classList.remove("l2")
+            logLeft.classList.add("l3")
+        case logLeft.classList.contains("l3") :
+            logLeft.classList.remove("l3")
+            logLeft.classList.add("l4")
+        case logLeft.classList.contains("l4") :
+            logLeft.classList.remove("l4")
+            logLeft.classList.add("l5")
+        case logLeft.classList.contains("l5") :
+                logLeft.classList.remove("l5")
+                logLeft.classList.add("l1")
 
     }
 }
+
+//7. nastavujeme interval pohybu
+setInterval(autoMoveLogs, 1000)
